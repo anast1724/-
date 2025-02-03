@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+            font-family: monospace;
+            color: white;
+        }
+
+        #heart {
+            font-size: 24px;
+            white-space: pre;
+            cursor: pointer;
+            color: #ffffff;
+            animation: pulse 1.5s infinite;
+            text-align: center;
+            user-select: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            max-width: 80%;
+            display: none;
+        }
+
+        #ascii-art {
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre;
+            text-align: center;
+            display: none;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="heart">
+     ♡♡  ♡♡
+   ♡♡♡♡♡♡
+ ♡♡♡♡♡♡♡♡
+♡♡♡♡♡♡♡♡♡
+♡♡♡♡♡♡♡♡♡
+ ♡♡♡♡♡♡♡♡
+   ♡♡♡♡♡♡
+     ♡♡♡♡
+       ♡♡
+        ♡
+    </div>
+    <div id="ascii-art"></div>
+    <div id="message"></div>
+
+    <script>
+        const phrases = [
+            "Love is... всегда говорить 'Доброе утро!'",
+            "Love is... готовить вместе завтрак",
+            "Love is... держаться за руки в кино",
+            "Love is... обнимать без причины",
+            "Love is... вместе мечтать о будущем",
+            "Love is... ждать встречи каждый день",
+            "Love is... смотреть в одном направлении",
+            "Love is... принимать друг друга такими, какие есть",
+            "Love is... вместе преодолевать трудности",
+            "Love is... радоваться успехам друг друга"
+        ];
+
+        const asciiArts = [
+            `  /\\___/\\
+   (  o o  )
+   (  =^=  ) 
+    (______)`,
+            
+            `   ,_,
+    (',')
+    (__)`,
+            
+            `  .---.
+ /     \\
+|   ^_^  |
+ \\     /
+  '---'`,
+            
+            ` /\\_/\\
+(  o.o  )
+ >  ^  <`,
+            
+            `  /\\___/\\
+ (  o o  )
+  (  T  )
+   > ^ <`
+        ];
+
+        const heart = document.getElementById('heart');
+        const message = document.getElementById('message');
+        const asciiArt = document.getElementById('ascii-art');
+        let isActive = false;
+
+        heart.addEventListener('click', () => {
+            if (!isActive) {
+                isActive = true;
+                const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+                const randomArt = asciiArts[Math.floor(Math.random() * asciiArts.length)];
+                
+                message.style.display = 'block';
+                asciiArt.style.display = 'block';
+                
+                message.textContent = randomPhrase;
+                asciiArt.textContent = randomArt;
+            } else {
+                isActive = false;
+                message.style.display = 'none';
+                asciiArt.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
